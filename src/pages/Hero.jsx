@@ -1,3 +1,5 @@
+import { heroes } from "../data/heroesData";
+
 export const Hero = () => {
     return (
     <>
