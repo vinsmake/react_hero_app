@@ -1,4 +1,4 @@
-import { HeroesList } from "../components/Navbar/HeroesList"
+import { HeroesList } from "../components/HeroesList"
 
 
 
