@@ -13,7 +13,7 @@ characters,
 
     return (
     <>
-        <article className="col">
+        <article className="col animate__animated  animate__fadeIn">
             <div className="card">
 
                 <div className="row no-glutters">

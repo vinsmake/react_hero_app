@@ -1,11 +1,13 @@
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { getHeroById } from "../helpers/heroesHelpers/getHeroById";
+import { useMemo } from "react";
 
 export const Hero = () => {
 
     const {id} = useParams();
 
-    const hero = getHeroById(id)
+    /* Only renderizes again when id changes */
+    const hero = useMemo(() => getHeroById(id), [id])
 
     if (!hero) {
         return <Navigate to='/search'/>
@@ -19,7 +21,7 @@ export const Hero = () => {
     return (
     <>
     <div className="row mt-5">
-        <div className="col-4">
+        <div className="col-4 animate__animated  animate__bounceInLeft">
             <img
             src={`src/assets/img/heroes/${hero.id}.jpg`}
             alt=""
@@ -27,7 +29,7 @@ export const Hero = () => {
             />
         </div>
 
-        <div className="col-8">
+        <div className="col-8 animate__animated  animate__bounceInRight">
             <h3>{hero.superhero}</h3>
             <ul className="list-group list-group-flush">
                 <li className="list-group-item">
