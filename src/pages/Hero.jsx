@@ -23,7 +23,7 @@ export const Hero = () => {
     <div className="row mt-5">
         <div className="col-4 animate__animated  animate__bounceInLeft">
             <img
-            src={`src/assets/img/heroes/${hero.id}.jpg`}
+            src={`./heroes/${hero.id}.jpg`}
             alt=""
             className="img-thumbnail"
             />
