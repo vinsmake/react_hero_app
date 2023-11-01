@@ -9,7 +9,7 @@ first_appearance,
 characters,
 }) => {
 
-    const heroSrc = `src/assets/img/heroes/${id}.jpg`
+    const heroSrc = `./heroes/${id}.jpg`
 
     return (
     <>
