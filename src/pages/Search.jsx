@@ -2,6 +2,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { HeroCard } from "../components/HeroCard"
 import { useForm } from "../hooks/useForm"
 import queryString from "query-string";
+import { getHeroesByName } from "../helpers/heroesHelpers/getHeroesByName";
+import {heroes} from '../data/heroesData'
 
 export const Search = () => {
 
@@ -13,6 +15,8 @@ export const Search = () => {
     /* this separates the query in diferent parameters. */
     /* we can get only the q by using 'q', provided by query-string rules */
     const {q = ''} = queryString.parse(location.search);
+    /* we use our getter with the query */
+    const heroes = getHeroesByName(q);
 
     
     /* Form */
@@ -25,6 +29,8 @@ export const Search = () => {
     /* we create this function to navigate to the expected url */
     const onSearchSubmit = (e) => {
         e.preventDefault();
+
+
 
         /* This cleans the text */
         searchText.toLowerCase().trim()
@@ -72,6 +78,12 @@ export const Search = () => {
                     <div className="alert alert-danger animate__animated animate__fadeIn" >
                         No hero with <b>{q}</b>
                     </div>
+
+                    {
+                        heroes.map(hero => (
+                            <HeroCard key={hero.id} {...hero}/>
+                        ))
+                    }
 
                 </div>
             </div>
