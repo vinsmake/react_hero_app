@@ -3,7 +3,7 @@ import { HeroCard } from "../components/HeroCard"
 import { useForm } from "../hooks/useForm"
 import queryString from "query-string";
 import { getHeroesByName } from "../helpers/heroesHelpers/getHeroesByName";
-import {heroes} from '../data/heroesData'
+import { heroes } from '../data/heroesData'
 
 export const Search = () => {
 
@@ -14,16 +14,16 @@ export const Search = () => {
     /* Query-String package */
     /* this separates the query in diferent parameters. */
     /* we can get only the q by using 'q', provided by query-string rules */
-    const {q = ''} = queryString.parse(location.search);
+    const { q = '' } = queryString.parse(location.search);
     /* we use our getter with the query */
     const heroes = getHeroesByName(q);
 
-    
+
     /* Form */
     /* Initial state of the form, we take this 2 data and use it in the useForm custom hook */
-    const {searchText, onInputChange} = useForm({
+    const { searchText, onInputChange } = useForm({
         /* '' as default */
-        searchText: ''
+        searchText: q
     });
 
     /* we create this function to navigate to the expected url */
@@ -71,17 +71,25 @@ export const Search = () => {
                     <h4>Results</h4>
                     <hr />
 
-                    <div className="alert alert-primary animate__animated animate__fadeIn" >
-                        Search a hero
-                    </div>
+                    {
+                        (q == '') ?
+                            (
+                                <div className="alert alert-primary animate__animated animate__fadeIn" >
+                                    Search a hero
+                                </div>
+                            )
+                            : (heroes.length == 0) && (
+                                <div className="alert alert-danger animate__animated animate__fadeIn" >
+                                    No hero with <b>{q}</b>
+                                </div>
+                            )
+                    }
 
-                    <div className="alert alert-danger animate__animated animate__fadeIn" >
-                        No hero with <b>{q}</b>
-                    </div>
+
 
                     {
                         heroes.map(hero => (
-                            <HeroCard key={hero.id} {...hero}/>
+                            <HeroCard key={hero.id} {...hero} />
                         ))
                     }
 
