@@ -6,10 +6,11 @@ export const Navbar = () => {
 
     const navigate = useNavigate();
 
-    const {user} = useContext(AuthContext);
+    const {user, logout} = useContext(AuthContext);
 
     /* Logout button */
     const onLogout = () => {
+        logout();
         navigate('/login', {replace: true})
     }
 
