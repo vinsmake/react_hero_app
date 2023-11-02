@@ -8,11 +8,15 @@ export const Login = () => {
     const {login} = useContext(AuthContext)
     const navigate = useNavigate();
 
+    /* we're using lastPath to login again and still in the same page */
     const onLogin = () => {
+
+        const lastPath = localStorage.getItem('lastPath') || '/';
+
 
         login('vinsmake');
 
-        navigate('/', {replace: true});
+        navigate(lastPath, {replace: true});
     }
 
     return (
